@@ -91,7 +91,7 @@
         // Choose an icon for the admin bar menu
         'admin_bar_priority'   => 50,
         // Choose an priority for the admin bar menu
-        'global_variable'      => '',
+        'global_variable'      => 'datatrix',
         // Set a different name for your global variable other than the opt_name
         'dev_mode'             => false,
         // Show the time the page took to load, etc
@@ -226,7 +226,7 @@
     }
 
     // Add content after the form.
-    $args['footer_text'] = __( '<p>This text is displayed below the options panel. It isn\'t required, but more info is always better! The footer_text field accepts all HTML.</p>', 'redux-framework-demo' );
+    $args['footer_text'] = __( '', 'redux-framework-demo' );
 
     Redux::setArgs( $opt_name, $args );
 
@@ -257,9 +257,9 @@
     $content = __( '<p>This is the sidebar content, HTML is allowed.</p>', 'redux-framework-demo' );
     Redux::setHelpSidebar( $opt_name, $content );
 
-    //header main area
+    //header-top main area
     redux::setSection($opt_name, array(
-        'title'=>__('Header','SR'),
+        'title'=>__('Header-top','SR'),
         'id'=>'header-opt',
         'desc'=>__('This is header section area','SR'),
         'icon'=>__('el el-folder-close', 'SR')
@@ -268,19 +268,19 @@
     //header top logo subsection
     redux::setSection($opt_name, array(
         'title'=> __('header-logo', 'SR'),
-        'id'=> 'logo-gallery',
+        'id'=> 'media-gallery',
         'type'=> 'select_image',
         'desc'=> __('upload your logo or right logo content', 'SR'),
         'subsection'=> true,
         'icon'=> __('el el-upload', 'SR'),
         'fields'=>array(
             array(
-                'id'=>'opt-gallery',
-                'type'=>'gallery',
+                'id'=>'opt-gallery-logo',
+                'type'=>'media',
                 'title'=>__('Set the logo', 'SR'),
                 'subtitle'=>__('This is logo section area', 'SR'),
                 'desc'=>__('set the logo as your own', 'SR'),
-    
+                'compailer'=>true,
             ),
             array(
                 'id'=>'logo-text',
@@ -288,20 +288,113 @@
                 'title'=>__('Set the logo text', 'SR'),
                 'subtitle'=>__('This is logo text area', 'SR'),
                 'desc'=>__('set the logo text', 'SR'),
+                'default'=>'Datatrix soft',
     
             ),
-            array(
-                'id'=>'opt-social-icon',
-                'type'=>'sortables',
-                'title'=>__('Set the logo', 'SR'),
-                'subtitle'=>__('This is logo section area', 'SR'),
-                'desc'=>__('set the logo as your own', 'SR'),
-                'options' => array
-    
-            )
         )
     ));
 
+    //switch button area
+    redux::setSection($opt_name,array(
+        'id'=>'header-switch-area',
+        'title'=>__('header top ON / OFF','SR'),
+        'desc'=>__('Header switch btn area','SR'),
+        'subsection'=>true,
+        'icon'=>__('el el-envelope', 'SR'),
+        'fields'=>array(
+            array(
+                'id'=>'header-switch',
+                'title'=>__('header switch btn','SR'),
+                'type'=>'switch',
+                'desc'=>__('If you want to switch ON or OFF then change it','SR'),
+                
+            ),
+            array(
+                'id'=>'header-switch-1',
+                'title'=>__('header switch btn','SR'),
+                'type'=>'switch',
+                'desc'=>__('If you want to switch ON or OFF then change it','SR'),
+                'default'=> 0,
+                'on'=>"Enable",
+                'off'=>"Disable"
+            ),
+            
+            
+        )
+        
+    ));
+    
+    //Header to icon and content
+    redux::setSection($opt_name,array(
+        'id'=>'social-icon',
+        'title'=>__('Social icon Set', 'SR'),
+        'desc'=>__('Add header social icon and social content', 'SR'),
+        'subsection'=>true,
+        'icon'=>__('el el-envelope', 'SR'),
+        'fields'=>array(
+            array(
+                'id'=>'opt-header-icon-text-1',
+                'type'=>'text',
+                'title'=>__('Set the Email icon title', 'SR'),
+                'subtitle'=>__('Write the Email icon title', 'SR'),
+                'desc'=>__('set the header top Email title', 'SR'), 
+                'default'=> 'shayadryhan@gmail.com',
+               
+               
+            ),
+            array(
+                'id'=>'opt-header-icon-text-2',
+                'type'=>'text',
+                'title'=>__('Phone icon title', 'SR'),
+                'subtitle'=>__('Write the phone number ', 'SR'),
+                'desc'=>__('set the header top phone number', 'SR'), 
+                'default'=> 'Call Us: +88 0179848768x',
+               
+            ),
+            array(
+                'id'=>'opt-header-search',
+                'type'=>'text',
+                'title'=>__('Header search title', 'SR'),
+                'subtitle'=>__('Write the header search content', 'SR'),
+                'desc'=>__('Write the header search content', 'SR'), 
+                'default'=> 'Free consolution',
+               
+            ),
+        
+        )
+        
+
+    ));
+
+    //header-top icon area 
+    redux::setSection($opt_name,array(
+        'id'=>'header-top-icon',
+        'title'=>__('Set header top icon', ''),
+        'desc'=>__('Set your header to icon as you like', ''),
+        'subsection'=>true,
+        'fields'=>array(
+            array(
+                'id'=>'opt-header-icon-1',
+                'type'=>'text',
+                'title'=>__('Header icon set', 'SR'),
+                'subtitle'=>__('Write the header-top icon', 'SR'),
+                'desc'=>__('Set Ionicons icons for your header top icon area', 'SR'), 
+                'label'=>true,
+                'default'=> 'paper-plane',
+            ),
+            array(
+                'id'=>'opt-header-icon-2',
+                'type'=>'text',
+                'title'=>__('Header icon set', 'SR'),
+                'subtitle'=>__('Write the header-top icon', 'SR'),
+                'desc'=>__('Set Ionicons icons for your header top icon area', 'SR'), 
+                'label'=>true,
+                'default'=> 'phone2',
+            ),
+
+        )
+
+    ));
     //header favicon subsection
     redux::setSection($opt_name,array(
         'title'=>__('Add header favicon icon', 'SR'),
@@ -321,6 +414,142 @@
             )
         )
     ));
+
+    //Footer section area
+
+    redux::setSection($opt_name,array(
+        'title'=>__('Footer Section', 'SR'),
+        'id'=>'fooer-area',
+        'desc'=>__('Footer area section','SR'),
+        'icon'=>__('el el-bookmark-empty', 'SR'),
+      
+    ));
+
+    redux::setSection($opt_name,array(
+        'title'=>__('Footer Switch', 'SR'),
+        'id'=>'fooer',
+        'desc'=>__('Footer area section','SR'),
+        'icon'=>__('el el-caret-down', 'SR'),
+        'subsection'=>true,
+        'fields'=> array(
+            array(
+                'title'=>__('Set Footer ', 'SR'),
+                'id'=>'opt-fooer',
+                'type'=>'switch',
+                'desc'=>__('Footer area section','SR'),
+                'default'=> 1,
+                'on'=>"Enable",
+                'off'=>"Disable"
+            ),
+            
+        )
+    ));
+    
+    //Footer social network
+    redux::setSection($opt_name,array(
+        'title'=>__('Footer Social network', 'SR'),
+        'id'=>'footer-social-network',
+        'desc'=>__('Footer area section','SR'),
+        'icon'=>__('el el-chevron-down', 'SR'),
+        'subsection'=>true,
+        'fields'=> array(
+            array(
+                'id'=>'opt-footer-social-network-title',
+                'type'=>'text',
+                'title'=>__('Footer social title', 'SR'),
+                'desc'=>__('Set footer top title ', 'SR'),
+                'default'=>'Connect With Us',
+            ),
+            array(
+                'id'=>'opt-footer-social-network',
+                'title'=>__('Set Footer social network','SR'),
+                'type'=>'sortable',
+                'desc'=>__('Set footer network url like example https://www.facebook.com','SR'),
+                'options'=>array(
+                    'facebook'=>'Enter your facebook url',
+                    'twitter'=>'Enter your twitter url',
+                    'instagram'=>'Enter your instagram url',
+                    'youtube'=>'Enter your youtube url',
+                    'skipe'=>'Enter your youtube url',
+                )
+            ),
+        )
+    ));
+
+      //Footer background color
+      redux::setSection($opt_name,array(
+        'title'=>__('Footer Social network', 'SR'),
+        'id'=>'footer-bg-color',
+        'desc'=>__('Footer area section','SR'),
+        'icon'=>__('el el-barcode', 'SR'),
+        'subsection'=>true,
+        'fields'=> array(
+            array(
+                'id'=>'opt-footer-bg-color',
+                'type'=>'color',
+                'title'=>__('Chagne your footer copyright', 'SR'),
+                'desc'=>__('Change your footer copyrigh title', 'SR'),
+                'default'=>'#232323',
+            ),
+          
+        )
+        ));
+
+    //Footer copyright section
+    redux::setSection($opt_name,array(
+        'title'=>__('Footer Copyright', 'SR'),
+        'id'=>'footer-copyright',
+        'desc'=>__('Footer area section','SR'),
+        'icon'=>__('el el-compass', 'SR'),
+        'subsection'=>true,
+        'fields'=> array(
+            array(
+                'id'=>'opt-footer-copyright',
+                'type'=>'text',
+                'title'=>__('Chagne your footer copyright', 'SR'),
+                'desc'=>__('Change your footer copyrigh title', 'SR'),
+                'default'=>'All rights reserved | This template is made with',
+            ),
+            array(
+                'id'=>'opt-footer-copyright-link',
+                'type'=>'text',
+                'title'=>__('Chagne your footer copyright url', 'SR'),
+                'desc'=>__('Change your footer copyrigh url link ', 'SR'),
+                'default'=>'<a style="color:red" href="https://www.datatrixsoft.com">Datatrix soft</a>',
+            ),
+        )
+        ));
+
+        redux::Setsection($opt_name,array(
+            'title'=>__('Features category', 'SR'),
+            'id'=>'features-category',
+            'desc'=>__('Features category section','SR'),
+            'icon'=>__('el el-compass', 'SR'),
+            'fields'=>array(
+                array(
+                    'id'=>'opt-features-category-icon',
+                    'type'=>'text',
+                    'title'=>__('Chagne your features category', 'SR'),
+                    'desc'=>__('Change your footer features icon', 'SR'),
+                    'default'=>'facebook',   
+                ), 
+                array(
+                    'id'=>'opt-features-category-title',
+                    'type'=>'text',
+                    'title'=>__('Chagne your features category title', 'SR'),
+                    'desc'=>__('Change your footer features title', 'SR'),
+                    'default'=>'Organization',   
+                ),
+                array(
+                    'id'=>'opt-features-category-desc',
+                    'type'=>'text',
+                    'title'=>__('Chagne your features category description', 'SR'),
+                    'desc'=>__('Change your footer features description', 'SR'),
+                    'default'=>'Far far away, behind the word mountains, far from the countries Vokalia.',   
+                )
+            )
+            
+        ));
 
     // If Redux is running as a plugin, this will remove the demo notice and links
     //add_action( 'redux/loaded', 'remove_demo' );

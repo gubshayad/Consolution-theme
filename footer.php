@@ -1,5 +1,13 @@
 
-		
+		<?php global $datatrix ?>
+    
+    <?php if($datatrix['opt-fooer']==1) : ?>
+
+    <style>
+          .ftco-footer {
+              background: <?php echo $datatrix['opt-footer-bg-color'];?>
+          }
+    </style>
     <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
         <div class="row mb-5">
@@ -67,23 +75,36 @@
             <div class="ftco-footer-widget mb-5">
             	<h2 class="ftco-heading-2 mb-0">Connect With Us</h2>
             	<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                <?php if(!empty ($datatrix['opt-footer-social-network']['facebook'])) :?>
+                   <li class="ftco-animate"><a href="<?php echo $datatrix['opt-footer-social-network']['facebook'];?>" target="_blank"><span class="icon-facebook"></span></a></li>
+                <?php endif;?> 
+                <?php if(!empty ($datatrix['opt-footer-social-network']['twitter'])) :?>
+                    <li class="ftco-animate"><a href="<?php echo $datatrix['opt-footer-social-network']['twitter'];?>" target="_blank"><span class="icon-twitter"></span></a></li>
+                <?php endif;?> 
+                <?php if(!empty ($datatrix['opt-footer-social-network']['instagram'])) {?>
+                    <li class="ftco-animate"><a href="<?php echo $datatrix['opt-footer-social-network']['instagram'];?>" target="_blank"><span class="icon-instagram"></span></a></li>
+                <?php }?>     
+                <?php if(!empty ($datatrix['opt-footer-social-network']['youtube'])) {?>
+                    <li class="ftco-animate"><a href="<?php echo $datatrix['opt-footer-social-network']['youtube'];?>" target="_blank"><span class="icon-youtube"></span></a></li>
+                <?php }?>  
+                <?php if(!empty ($datatrix['opt-footer-social-network']['skype'])) {?>
+                    <li class="ftco-animate"><a href="<?php echo $datatrix['opt-footer-social-network']['skype'];?>" target="_blank"><span class="icon-skype"></span></a></li>
+                <?php }?>  
               </ul>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12 text-center">
-
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> <?php echo $datatrix['opt-footer-copyright']; ?> by <a style="color:red" href="https://www.datatrixsoft.com">Datatrix soft</a>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
           </div>
         </div>
       </div>
     </footer>
+
+    <?php endif ; ?>
     
  <?php wp_footer(); ?>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
